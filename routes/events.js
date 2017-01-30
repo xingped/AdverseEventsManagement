@@ -24,7 +24,7 @@ router.put('/', function(req, res) {
 });
 
 router.post('/:id', function(req, res) {
-	Events.findByIdAndUpdate(req.params.id, {$set: req.body}, function(err, result) {
+	Events.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true}, function(err, result) {
 		if(err) {
 			res.status(500).send(err);
 		} else {

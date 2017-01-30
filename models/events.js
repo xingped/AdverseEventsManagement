@@ -1,21 +1,54 @@
 var mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
-	receiveDate: String,
-	receiptDate: String,
-	safetyReportId: String,
-	companyNumber: String,
+	receiveDate: {
+		type: String,
+		default: ''
+	},
+	receiptDate: {
+		type: String,
+		default: ''
+	},
+	safetyReportId: {
+		type: String,
+		default: ''
+	},
+	companyNumber: {
+		type: String,
+		default: ''
+	},
 	patient: {
-		age: String,
-		sex: String,
+		age: {
+			type: String,
+			default: ''
+		},
+		sex: {
+			type: String,
+			default: ''
+		},
 		drugs: [{
-			autorizationNumber: String,
-			DosageText: String,
-			medicinalProduct: String,
-			drugIndication: String
+			autorizationNumber: {
+				type: String,
+				default: ''
+			},
+			DosageText: {
+				type: String,
+				default: ''
+			},
+			medicinalProduct: {
+				type: String,
+				default: ''
+			},
+			drugIndication: {
+				type: String,
+				default: ''
+			}
 		}],
-		reactions: [{
-			meddraPrimaryTerm: String
+		reaction: [{
+			meddraPrimaryTerm: {
+				type: String,
+				default: ''
+			}
 		}]
 	}
 });
