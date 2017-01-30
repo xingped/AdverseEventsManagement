@@ -50,6 +50,7 @@ myApp.controller('EventsCtrl', ['$scope', '$http', '$uibModal', function($scope,
 			url: '/api/events/'+event._id
 		}).then(function(resp) {
 			$scope.events.splice($scope.events.indexOf(event), 1);
+			$scope.getEvents();
 		}, function(err) {
 			$scope.errorMsg = err.data.errorMsg;
 		});
