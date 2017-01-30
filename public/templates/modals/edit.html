@@ -1,31 +1,104 @@
-<div class="edit">
+<div class="edit panel panel-default">
 	<div class="panel-heading">
 		<h2 class="panel-title">{{mode === 'CREATE' ? 'Create Event' : 'Edit Event'}}</h2>
 	</div>
 	<div class="panel-body">
-		<form>
-			<div class="row">
-				<h5>Adverse Event:</h5>
-				<div>
-
+		<form class="form-horizontal">
+			<div>
+				<h4>Adverse Event:</h4>
+				<div class="form-group">
+					<label class="col-xs-4 control-label">Receive Date:</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" ng-model="selectedEvent.receiveDate">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-4 control-label">Receipt Date:</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" ng-model="selectedEvent.receiptDate">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-4 control-label">Company Number:</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" ng-model="selectedEvent.companyNumber">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-4 control-label">Safety Report ID:</label>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" ng-model="selectedEvent.safetyReportId">
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<h5>Patient:</h5>
-				<div>
-
+			<div>
+				<h4>Patient:</h4>
+				<div class="form-group">
+					<label class="col-xs-2 control-label">Age:</label>
+					<div class="col-xs-3">
+						<input type="text" class="form-control" ng-model="selectedEvent.patient.age">
+					</div>
+					<label class="col-xs-2 control-label">Sex:</label>
+					<div class="col-xs-3">
+						<input type="text" class="form-control" ng-model="selectedEvent.patient.sex">
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<h5>Drugs:</h5>
-				<div>
-
+			<div>
+				<h4>Drugs:</h4>
+				<div class="form-group">
+					<div class="col-xs-10">
+						<div class="col-xs-4">
+							<h5>Authorization:</h5>
+						</div>
+						<div class="col-xs-4">
+							<h5>Medicine:</h5>
+						</div>
+						<div class="col-xs-4">
+							<h5>Indication:</h5>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" ng-repeat="drug in selectedEvent.patient.drugs">
+					<div class="col-xs-10">
+						<div class="col-xs-4">
+							<input type="text" class="form-control" ng-model="drug.autorizationNumber">
+						</div>
+						<div class="col-xs-4">
+							<input type="text" class="form-control" ng-model="drug.medicinalProduct">
+						</div>
+						<div class="col-xs-4">
+							<input type="text" class="form-control" ng-model="drug.drugIndication">
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<button class="btn btn-sm btn-default" ng-click="removeDrug($index)">
+							<i class="fa fa-minus"></i>
+						</button>
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<button class="btn btn-default" ng-click="addDrug()">
+						<i class="fa fa-plus"></i>
+					</button>
 				</div>
 			</div>
-			<div class="row">
-				<h5>Reactions:</h5>
-				<div>
-
+			<div>
+				<h4>Reactions:</h4>
+				<div class="form-group" ng-repeat="reaction in selectedEvent.patient.reaction">
+					<div class="col-xs-10">
+						<input type="text" class="form-control" ng-model="reaction.meddraPrimaryTerm">
+					</div>
+					<div class="col-xs-2">
+						<button class="btn btn-sm btn-default" ng-click="removeReaction($index)">
+							<i class="fa fa-minus"></i>
+						</button>
+					</div>
+				</div>
+				<div class="form-group col-xs-12">
+					<button class="btn btn-default" ng-click="addReaction()">
+						<i class="fa fa-plus"></i>
+					</button>
 				</div>
 			</div>
 		</form>

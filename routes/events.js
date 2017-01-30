@@ -4,7 +4,7 @@ var Events = require('../models/events');
 
 router.get('/', function(req, res) {
 	var page = parseInt(req.query.page);
-	Events.find({}).skip(page).limit(10).exec(function(err, result) {
+	Events.find({}).skip(page).limit(10).sort({receiveDate:-1}).exec(function(err, result) {
 		if(err) {
 			res.status(500).send(err);
 		} else {

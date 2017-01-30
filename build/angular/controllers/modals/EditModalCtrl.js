@@ -2,15 +2,15 @@ myApp.controller('EditModalCtrl', ['$scope', '$http', '$uibModalInstance', 'sele
 	$scope.drugs = [];
 	$scope.reactions = [];
 	$scope.mode = selectedEvent ? 'EDIT' : 'CREATE';
-	$scope.selectedEvent = selectedEvent;
+	if(selectedEvent) $scope.selectedEvent = selectedEvent;
 	console.log($scope.selectedEvent);
 
-	$scope.saveEvent = function(event) {
+	$scope.saveEvent = function() {
 		// If event is new then PUT, else if updating then POST
 		$http({
 			method: $scope.mode === 'CREATE' ? 'PUT' : 'POST',
 			url: '/api/events/' + ($scope.mode === 'EDIT' ? $scope.selectedEvent._id : ''),
-			data: event
+			data: $scope.selectedEvent
 		}).then(function(resp) {
 			$uibModalInstance.close(resp.data);
 		}, function(err) {
